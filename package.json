@@ -1,0 +1,25 @@
+{
+  "name": "xlsxcomparetool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RingoKam/XlsxCompareTool.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RingoKam/XlsxCompareTool/issues"
+  },
+  "homepage": "https://github.com/RingoKam/XlsxCompareTool#readme",
+  "dependencies": {
+    "array-compare": "^2.0.0",
+    "js-stringify": "^1.0.2",
+    "lodash": "^4.17.4",
+    "node-xlsx": "^0.7.4"
+  }
+}
