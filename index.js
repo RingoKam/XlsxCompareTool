@@ -1,40 +1,28 @@
-var xlsx = require('node-xlsx');
-var fs = require('fs');
-var stringify = require('js-stringify');
-let arrayCompare = require("array-compare"); 
+const FileCompare = window.require('./fileCompare');
+const electron = window.require('electron').remote;
 
-let result1 = xlsx.parse(fs.readFileSync(`./file1.csv`));
-var result2 = xlsx.parse(fs.readFileSync(`./file3.csv`));
+$('.openFilePath').on('click', function () {
+    let that = this;
+    electron.dialog.showOpenDialog({
+        title: "Select File location"
+    }, (filePath) => {
+        alert(filePath);
+        $(that).siblings('.filename').text(filePath[0]);
+    })
+});
 
-var compareResult = CompareRows(result1[0].data, result2[0].data);
+$('#compare').on('click', function () {
+    const file1 = $("#file1path").text();
+    const file2 = $("#file2path").text();
+    let result = ResultMapper(FileCompare.CompareFiles(file1, file2));
+    $('#file1Result').empty();
+    $('#file1Result').append()
+});
 
-fs.writeFile('diffResult', stringify(compareResult));
-
-function CompareRows(file1, file2) {
-    var file1Dict = BuildKeyValue(file1);
-    var file2Dict = BuildKeyValue(file2);
-    return arrayCompare(file1Dict, file2Dict, 'key');
-}
-
-function BuildKeyValue(file) {
-    let fileList = file.map(function (el, index) {
-        return {
-            key: el.reduce(function (acc, cur) {
-                return acc += cur;
-            }, ""),
-            rowNum: index,
-            value: el
-        }
-    });
-
-    const fileDict = new Map();
-
-    fileList.forEach(function (file) {
-        fileDict.set(file.key, {
-            rowNum: file.rowNum,
-            value: file.value
-        })
-    }, this);
-
-    return fileList;
+function ResultMapper(result) {
+    return {
+        match: result.added && result.added.length === 0 && result.missing && result.missing.length === 0,
+        MissingFromFile2: result.added,
+        MissingFromFile1: result.missing
+    }
 }

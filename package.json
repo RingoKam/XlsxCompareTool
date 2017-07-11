@@ -1,9 +1,10 @@
 {
-  "name": "xlsxcomparetool",
+  "name": "excel-compare",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,8 +19,12 @@
   "homepage": "https://github.com/RingoKam/XlsxCompareTool#readme",
   "dependencies": {
     "array-compare": "^2.0.0",
+    "jquery": "^2.1.1",
     "js-stringify": "^1.0.2",
     "lodash": "^4.17.4",
     "node-xlsx": "^0.7.4"
+  },
+  "devDependencies": {
+    "electron": "^1.6.11"
   }
 }
