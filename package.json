@@ -18,8 +18,12 @@
   "homepage": "https://github.com/RingoKam/XlsxCompareTool#readme",
   "dependencies": {
     "array-compare": "^2.0.0",
+    "csv": "^1.1.1",
+    "csvtojson": "^1.1.7",
+    "fast-csv": "^2.4.0",
     "js-stringify": "^1.0.2",
     "lodash": "^4.17.4",
-    "node-xlsx": "^0.7.4"
+    "node-xlsx": "^0.7.4",
+    "q": "^1.5.0"
   }
 }
