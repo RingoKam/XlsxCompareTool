@@ -19,7 +19,7 @@ function CompareFile(file1Loc, file2Loc) {
 function BuildKeyValue(file) {
     let fileList = file.map(function (el, index) {
         return {
-            key: el.reduce(function (acc, cur) {
+            key: el.concat().sort().reduce(function (acc, cur) {
                 return acc += cur;
             }, ""),
             rowNum: index,
