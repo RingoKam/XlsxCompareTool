@@ -1,5 +1,5 @@
-let xlsx = require('node-xlsx');
 let csv = require('fast-csv');
+let xlsx = require('node-xlsx');
 let fs = require('fs');
 let stringify = require('js-stringify');
 let arrayCompare = require("array-compare");

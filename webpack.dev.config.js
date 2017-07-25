@@ -1,7 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { spawn } = require('child_process');
+const {
+  spawn
+} = require('child_process');
 
 // Config directories
 const SRC_DIR = path.resolve(__dirname, 'src');
@@ -17,29 +19,48 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js'
   },
+  resolve: {
+    alias: {
+      jszip: 'xlsx/jszip.js'
+    }
+  },
   module: {
-    rules: [
-      {
+    noParse: [/jszip.js$/],
+    rules: [{
         test: /\.css$/,
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+        use: [{
+          loader: 'style-loader'
+        }, {
+          loader: 'css-loader'
+        }],
         include: defaultInclude
       },
       {
         test: /\.jsx?$/,
-        use: [{ loader: 'babel-loader' }],
+        use: [{
+          loader: 'babel-loader'
+        }],
         include: defaultInclude
       },
       {
         test: /\.(jpe?g|png|gif)$/,
-        use: [{ loader: 'file-loader?name=img/[name]__[hash:base64:5].[ext]' }],
+        use: [{
+          loader: 'file-loader?name=img/[name]__[hash:base64:5].[ext]'
+        }],
         include: defaultInclude
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
-        use: [{ loader: 'file-loader?name=font/[name]__[hash:base64:5].[ext]' }],
+        use: [{
+          loader: 'file-loader?name=font/[name]__[hash:base64:5].[ext]'
+        }],
         include: defaultInclude
       }
     ]
+  },
+  node: {
+    fs: false,
+    Buffer: false
   },
   target: 'electron-renderer',
   plugins: [
@@ -58,12 +79,14 @@ module.exports = {
     },
     setup() {
       spawn(
-        'electron',
-        ['.'],
-        { shell: true, env: process.env, stdio: 'inherit' }
-      )
-      .on('close', code => process.exit(0))
-      .on('error', spawnError => console.error(spawnError));
+          'electron', ['.'], {
+            shell: true,
+            env: process.env,
+            stdio: 'inherit'
+          }
+        )
+        .on('close', code => process.exit(0))
+        .on('error', spawnError => console.error(spawnError));
     }
   }
 };

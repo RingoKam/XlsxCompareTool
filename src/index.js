@@ -12,6 +12,4 @@ document.body.appendChild( root );
 // Now we can render our application into it
 const history = createBrowserHistory();
 
-render(<Router history={history}>
-    <App />
-</Router>, document.getElementById('root'));
+render(<App />, document.getElementById('root'));

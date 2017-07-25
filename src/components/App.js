@@ -1,19 +1,31 @@
+//fix onTapEvent missing
+import injectTapEventPlugin from "react-tap-event-plugin";
+injectTapEventPlugin();
+
 import '../assets/css/App.css';
 import React, { Component } from 'react';
-import { Nav } from './nav'
-import { Switch, Route, Redirect, Link } from 'react-router-dom';
-import { SelectFiles } from './SelectFiles'
+
+import {green600} from 'material-ui/styles/colors';
+
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import FileCompareSteps from '../containers/FileCompareSteps'
+
+const muiTheme = getMuiTheme({
+  palette: {
+    accent1Color: green600
+  },
+});
 
 class App extends React.Component {
+
   render() {
+    const contentStyle = { margin: '0 16px' };
     return (
-      <div>
-        <Nav />
-        <Switch>
-          <Route path="/SelectFiles" component={SelectFiles} />
-          <Redirect to="/SelectFiles" />
-        </Switch>
-      </div>
+      <MuiThemeProvider muiTheme={muiTheme}>
+          <FileCompareSteps />
+      </MuiThemeProvider>
     );
   }
 }
