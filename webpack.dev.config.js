@@ -24,6 +24,12 @@ module.exports = {
       jszip: 'xlsx/jszip.js'
     }
   },
+  externals: [
+		{
+			'./cptable': 'var cptable',
+			'../xlsx.js': 'var _XLSX'
+		}
+	],
   module: {
     noParse: [/jszip.js$/],
     rules: [{

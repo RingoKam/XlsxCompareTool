@@ -7,10 +7,8 @@ import {
 } from 'material-ui/Stepper';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-
 import SelectFiles from '../components/SelectFiles';
-
-import { CompareFile } from '../library/file-compare'
+import { CompareFile } from '../library/file-compare';
 
 class FileCompareSteps extends React.Component {
 
@@ -25,7 +23,7 @@ class FileCompareSteps extends React.Component {
           isModified: false
         }],
         file2: [{
-        address: "...",
+          address: "...",
           isModified: false
         }]
       }
@@ -39,7 +37,7 @@ class FileCompareSteps extends React.Component {
       finished: stepIndex >= 2,
     });
   };
-
+  
   handlePrev() {
     const {stepIndex} = this.state;
     if (stepIndex > 0) {
@@ -66,6 +64,12 @@ class FileCompareSteps extends React.Component {
       return Object.assign({}, prevState);
     }); 
   };
+
+  compareFile = (file1, file2) => {
+    CompareFile(file1[0].address , file2[0].address).then((result) =>  {
+      console.log(result);
+    }).catch(console.error)
+  }
 
   render() {
     const contentStyle = { margin: '0 16px' };
@@ -108,7 +112,10 @@ class FileCompareSteps extends React.Component {
                                 <RaisedButton
                                     label={this.state.stepIndex === 2 ? 'Finish' : 'Next'}
                                     primary={true}
-                                    onTouchTap={() => { this.handleNext() }}
+                                    onTouchTap={() => { 
+                                      const result = this.compareFile(this.state.files.file1, this.state.files.file2);
+                                      this.handleNext();
+                                      }}
                                 />
                             </div>
                         </div>
