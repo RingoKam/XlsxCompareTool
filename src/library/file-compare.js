@@ -56,6 +56,4 @@ function ReadExcelFile(fileLocation) {
     return result.promise;
 }
 
-module.exports = {
-    CompareFile
-}
+window.CompareFile = CompareFile;
