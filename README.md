@@ -1,6 +1,6 @@
-# excel-compare
+# Excel Compare tool
 
-> compare excel file with ease. 
+> compare excel file with ease. Works with .csv and .xlsx 
 
 #### Build Setup
 
