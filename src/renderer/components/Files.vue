@@ -12,6 +12,7 @@
                 </div>
             </el-card>
         </div>
+        {{testing}}
         <div class="button-group">
             <el-button icon="plus" type="text" v-on:click="addFileGroup">Add New</el-button>
             <el-button icon="search" type="primary" v-on:click="compareListFiles">Compare</el-button>
@@ -60,6 +61,12 @@ export default {
             });
         }
     },
+    computed: {
+        testing: function() {
+            return this.$store.state.fileDatas
+        }
+    },
+    //life cycle hook
     created: function() {
         this.addFileGroup();
     },

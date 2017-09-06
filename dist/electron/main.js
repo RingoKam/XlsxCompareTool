@@ -2526,6 +2526,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_electron___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_electron__);
 
 
+/**
+ * Set `__static` path to static files in production
+ * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
+ */
 if (process.env.NODE_ENV !== 'development') {
   global.__static = __webpack_require__(0).join(__dirname, '/static').replace(/\\/g, '\\\\');
 }
@@ -2534,6 +2538,9 @@ let mainWindow;
 const winURL = process.env.NODE_ENV === 'development' ? `http://localhost:9080` : `file://${__dirname}/index.html`;
 
 function createWindow() {
+  /**
+   * Initial window options
+   */
   mainWindow = new __WEBPACK_IMPORTED_MODULE_0_electron__["BrowserWindow"]({
     height: 563,
     useContentSize: true,
@@ -2560,6 +2567,26 @@ __WEBPACK_IMPORTED_MODULE_0_electron__["app"].on('activate', () => {
     createWindow();
   }
 });
+
+/**
+ * Auto Updater
+ *
+ * Uncomment the following code below and install `electron-updater` to
+ * support auto updating. Code Signing with a valid certificate is required.
+ * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
+ */
+
+/*
+import { autoUpdater } from 'electron-updater'
+
+autoUpdater.on('update-downloaded', () => {
+  autoUpdater.quitAndInstall()
+})
+
+app.on('ready', () => {
+  if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
+})
+ */
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, "src/main"))
 
 /***/ }),
@@ -2574,11 +2601,22 @@ module.exports = __webpack_require__(14);
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
+/**
+ * This file is used specifically and only for development. It installs
+ * `electron-debug` & `vue-devtools`. There shouldn't be any need to
+ *  modify this file, but it can be used to extend your development
+ *  environment.
+ */
 
+/* eslint-disable */
+
+// Set environment for development
 process.env.NODE_ENV = 'development';
 
+// Install `electron-debug` with `devtron`
 __webpack_require__(17)({ showDevTools: true });
 
+// Install `vue-devtools`
 __webpack_require__(2).app.on('ready', () => {
   let installExtension = __webpack_require__(30);
   installExtension.default(installExtension.VUEJS_DEVTOOLS).then(() => {}).catch(err => {
@@ -2586,6 +2624,7 @@ __webpack_require__(2).app.on('ready', () => {
   });
 });
 
+// Require `main` process to boot app
 __webpack_require__(14);
 
 /***/ }),
