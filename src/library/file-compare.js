@@ -11,7 +11,11 @@ function CompareFile(file1Loc, file2Loc) {
         let file1 = BuildKeyValue(files[0]);
         let file2 = BuildKeyValue(files[1]);
         let comparisonResults = arrayCompare(file1, file2, 'key');
-        result.resolve(comparisonResults);
+        result.resolve({
+            file1:files[0],
+            file2:files[1],
+            comparisonResults
+        });
     })
     return result.promise;
 }
@@ -56,6 +60,4 @@ function ReadExcelFile(fileLocation) {
     return result.promise;
 }
 
-module.exports = {
-    CompareFile
-}
+window.CompareFile = CompareFile;
