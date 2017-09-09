@@ -18,7 +18,7 @@ export default new Router({
     },
     {
       path: '*',
-      redirect: '/file'
+      redirect: '/landing-page'
     }
   ]
 })

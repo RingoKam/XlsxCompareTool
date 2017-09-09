@@ -4,9 +4,9 @@
             <el-button icon="arrow-left" @click.prevent="backToFiles">Back</el-button>
         </div>
         {{index}}{{filename}}
-        <div v-if="fileDatas[index]">
+        <!-- <div v-if="fileDatas[index]">
             {{fileDatas[index][filename].data}}
-        </div>
+        </div> -->
     </div>
 </template>
 

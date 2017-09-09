@@ -1,7 +1,7 @@
 {
   "name": "excel-compare",
   "version": "0.0.0",
-  "author": "",
+  "author": "ringokam",
   "description": "compare excel file",
   "license": null,
   "main": "./dist/electron/main.js",
