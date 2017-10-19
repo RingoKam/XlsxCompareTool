@@ -1,3 +1,4 @@
+import _ from "lodash"
 
 const state = {
     fileDatas: [],
@@ -16,8 +17,8 @@ const mutations = {
     },
     UPDATE_EXISTING_FILE_RESULTS(state, { index, result }) {
         const fileUpdate = state.fileDatas[index];
-        fileUpdate.file1.data = result.file1;
-        fileUpdate.file2.data = result.file2;
+        fileUpdate.file1.data = _.zip(result.file1);
+        fileUpdate.file2.data = _.zip(result.file2);
         fileUpdate.results = result.comparisonResults;
     },
     SET_LOADING(state, isLoading) {
